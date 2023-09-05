@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="https://kit.fontawesome.com/c348d4c177.js" crossorigin="anonymous"></script>
+    <title><%=title%></title>
+</head>
+<body>
+    <div id="app">
+        <h1>To Do List</h1>
+        <div>
+            <form action="/createtodolist" method="POST" id="form" > 
+                <input type="text" name="tasks" placeholder="Enter Tasks" id="tasks" required>
+                <select id="category" name="catagory" required>
+                    <option value="Personal">Personal</option>
+                    <option value="Professional">Professional</option>
+                    <option value="Work">Work</option>
+                    <option value="Others">Others</option>
+                </select>
+                <input type="date" name ="date" id="date" required>
+                <button id="button"type="submit">Add</button>
+            </form>
+        </div>
+        <div id="task-list">
+            <h2>LISTS</h2>
+            <ol id="Lists" type="1">
+                <% for(let i of todo_list){%>
+                    <!-- <div id="delete"> -->
+                <li id="individual-lists">
+                    <p> Task : <%= i.tasks %></p>
+                    <p> Date : <%= i.date %></p>
+                </li>
+                <div id="delete-btn">
+                    <p id="catagory"> <%= i.catagory %></p>
+                    <a href="/delete/?tasks=<%= i.tasks %>">
+                    <i class="fa-solid fa-trash fa-xl"  ></i>
+                    </a>
+                    </div>
+                <%}%>
+            </ol>
+        </div>
+    </div>
+    <script src="/js/home.js"></script>
+</body>
+</html>
